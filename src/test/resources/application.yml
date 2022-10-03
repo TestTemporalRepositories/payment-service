@@ -1,0 +1,25 @@
+server:
+  port: 8091
+
+springdoc:
+  api-docs:
+    path: /payment-service/api-docs
+  swagger-ui:
+    path: /payment-service/swagger-api.html
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/payment
+    username: payment
+    password: payment
+  flyway:
+    locations: classpath:db/migrations
+
+application:
+  temporal:
+    server: "127.0.0.1:7233"
+    namespace: "payment-system"
+    workers:
+      PAYMENT:
+        queue-name: "Payment-queue"
