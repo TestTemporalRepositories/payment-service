@@ -21,6 +21,8 @@ public class Payment {
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private UUID id;
 
+    private String requestId;
+
     private String currency;
 
     private Long amount;
@@ -33,4 +35,6 @@ public class Payment {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    private boolean notified;
 }
