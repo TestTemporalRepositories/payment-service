@@ -7,19 +7,15 @@ springdoc:
   swagger-ui:
     path: /payment-service/swagger-api.html
 
-spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/payment
-    username: payment
-    password: payment
-  flyway:
-    locations: classpath:db/migrations
-
 application:
   temporal:
     server: "127.0.0.1:7233"
-    namespace: "payment-system"
+    namespace: "test-namespace"
     workers:
       PAYMENT:
-        queue-name: "Payment-queue"
+        queue-name: "PAYMENT-SERVICE-QUEUE"
+    activity-queues:
+      BANK:
+        queue-name: "BANK-TASK-QUEUE"
+      NOTIFICATION:
+        queue-name: "NOTIFICATION-TASK-QUEUE"
