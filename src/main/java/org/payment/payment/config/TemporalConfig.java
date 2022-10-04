@@ -40,4 +40,12 @@ public class TemporalConfig {
     public WorkerFactory workerFactory(WorkflowClient workflowClient) {
         return WorkerFactory.newInstance(workflowClient);
     }
+
+    @Bean
+    public WorkerFactoryStarter workerFactoryStarter(WorkerFactory workerFactory) {
+        return new WorkerFactoryStarter(
+                temporalProperties.getWorkers(),
+                workerFactory
+        );
+    }
 }
