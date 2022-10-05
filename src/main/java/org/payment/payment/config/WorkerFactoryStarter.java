@@ -3,9 +3,10 @@ package org.payment.payment.config;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 import lombok.RequiredArgsConstructor;
-import org.payment.payment.workflows.GreetingWorkflowImpl;
 import org.payment.payment.config.properties.WorkerProperties;
 import org.payment.payment.config.properties.Workers;
+import org.payment.payment.workflows.child.ParentCreatePaymentWorkflowImpl;
+import org.payment.payment.workflows.easy.CreatePaymentWorkflowImpl;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
@@ -25,5 +26,7 @@ public class WorkerFactoryStarter implements ApplicationListener<ContextRefreshe
 
     private void setPaymentServiceWorker(WorkerProperties workerProperties) {
         Worker worker = workerFactory.newWorker(workerProperties.getQueueName());
+        worker.registerWorkflowImplementationTypes(CreatePaymentWorkflowImpl.class);
+        worker.registerWorkflowImplementationTypes(ParentCreatePaymentWorkflowImpl.class);
     }
 }
