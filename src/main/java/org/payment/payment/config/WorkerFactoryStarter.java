@@ -7,6 +7,7 @@ import org.payment.payment.config.properties.WorkerProperties;
 import org.payment.payment.config.properties.Workers;
 import org.payment.payment.workflows.child.ParentCreatePaymentWorkflowImpl;
 import org.payment.payment.workflows.easy.CreatePaymentWorkflowImpl;
+import org.payment.payment.workflows.versioning.VerCreatePaymentWorkflowImpl;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
@@ -28,5 +29,6 @@ public class WorkerFactoryStarter implements ApplicationListener<ContextRefreshe
         Worker worker = workerFactory.newWorker(workerProperties.getQueueName());
         worker.registerWorkflowImplementationTypes(CreatePaymentWorkflowImpl.class);
         worker.registerWorkflowImplementationTypes(ParentCreatePaymentWorkflowImpl.class);
+        worker.registerWorkflowImplementationTypes(VerCreatePaymentWorkflowImpl.class);
     }
 }

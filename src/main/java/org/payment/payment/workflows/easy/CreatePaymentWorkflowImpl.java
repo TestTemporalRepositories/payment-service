@@ -18,8 +18,8 @@ public class CreatePaymentWorkflowImpl implements CreatePaymentWorkflow {
     public String createPayment(PaymentDto paymentDto) {
         ActivityStub bankActivity = getBankActivity();
         ActivityStub notifyActivity = getNotifyActivity();
-        bankActivity.execute("PayOut", String.class, paymentDto);
-        bankActivity.execute("PayIn", String.class, paymentDto);
+        bankActivity.execute("PayOut", Void.class, paymentDto);
+        bankActivity.execute("PayIn", Void.class, paymentDto);
         String result = notifyActivity.execute("Notify", String.class, "Оплата завершена!");
         log.info(result);
         return "Operation completed";

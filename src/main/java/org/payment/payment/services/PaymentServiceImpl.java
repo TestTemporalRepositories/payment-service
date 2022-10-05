@@ -8,6 +8,7 @@ import org.payment.payment.config.properties.Workers;
 import org.payment.payment.dto.PaymentDto;
 import org.payment.payment.workflows.child.ParentCreatePaymentWorkflow;
 import org.payment.payment.workflows.easy.CreatePaymentWorkflow;
+import org.payment.payment.workflows.versioning.VerCreatePaymentWorkflow;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -44,6 +45,18 @@ public class PaymentServiceImpl implements PaymentService {
                 .build();
 
         ParentCreatePaymentWorkflow workflow = workflowClient.newWorkflowStub(ParentCreatePaymentWorkflow.class, options);
+        return workflow.createPayment(paymentDto);
+    }
+
+    @Override
+    public String createPaymentVersion(PaymentDto paymentDto) {
+
+        WorkflowOptions options = WorkflowOptions.newBuilder()
+                .setTaskQueue(workerProperties.getQueueName())
+                .setWorkflowId("Pay_" + UUID.randomUUID())
+                .build();
+
+        VerCreatePaymentWorkflow workflow = workflowClient.newWorkflowStub(VerCreatePaymentWorkflow.class, options);
         return workflow.createPayment(paymentDto);
     }
 }
