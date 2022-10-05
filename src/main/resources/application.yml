@@ -14,8 +14,3 @@ application:
     workers:
       PAYMENT:
         queue-name: "PAYMENT-SERVICE-QUEUE"
-    activity-queues:
-      BANK:
-        queue-name: "BANK-TASK-QUEUE"
-      NOTIFICATION:
-        queue-name: "NOTIFICATION-TASK-QUEUE"

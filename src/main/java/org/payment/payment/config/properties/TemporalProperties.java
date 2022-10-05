@@ -12,5 +12,4 @@ public class TemporalProperties {
     private String server;
     private String namespace;
     private Map<String, WorkerProperties> workers;
-    private Map<String, String> activityQueues;
 }
