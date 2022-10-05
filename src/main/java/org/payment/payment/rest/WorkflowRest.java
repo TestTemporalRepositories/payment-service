@@ -34,4 +34,14 @@ public class WorkflowRest {
                 HttpStatus.OK
         );
     }
+
+    @PostMapping("payments-with-versioning-workflow")
+    public ResponseEntity<String> testVersion(
+            @RequestBody PaymentDto paymentDto
+    ) {
+        return new ResponseEntity<>(
+                paymentService.createPaymentVersion(paymentDto),
+                HttpStatus.OK
+        );
+    }
 }
