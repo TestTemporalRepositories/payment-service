@@ -10,7 +10,7 @@ springdoc:
 application:
   temporal:
     server: "127.0.0.1:7233"
-    namespace: "test-namespace"
+    namespace: "temporal-workshop-namespace"
     workers:
       PAYMENT:
         queue-name: "PAYMENT-SERVICE-QUEUE"
