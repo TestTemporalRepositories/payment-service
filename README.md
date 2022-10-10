@@ -1,6 +1,7 @@
 # payment-service
 
 API сервис для запуска Workflows.
+Сервисы bank и notification-service просто должны быть запущены, REST API у них нет.
 
 Инструкция по локальному запуску Temporal:
 ```
